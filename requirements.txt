@@ -1,0 +1,5 @@
+Django==4.2
+# Используем стабильную версию DRF, доступную для текущего pip
+djangorestframework==3.16.1
+django-cors-headers==4.0.0
+Pillow==10.0.1
