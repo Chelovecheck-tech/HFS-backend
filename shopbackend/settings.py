@@ -111,6 +111,10 @@ if FRONTEND_URL:
 
 CORS_ALLOW_CREDENTIALS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://hfs-six.vercel.app",
+    "https://*.vercel.app",
+]
 # -------------------
 # DRF
 # -------------------
@@ -120,5 +124,10 @@ REST_FRAMEWORK = {}
 # Other
 # -------------------
 LANGUAGE_CODE = "ru-ru"
+TIME_ZONE = "UTC"
+
+USE_I18N = True
+USE_TZ = True
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_PASSWORD_VALIDATORS = []
