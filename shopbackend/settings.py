@@ -12,7 +12,9 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,.railway.app"
+    "localhost,127.0.0.1,.railway.app",
+    https://hfs-backend-production.up.railway.app
+
 ).split(",")
 
 # -------------------
@@ -114,6 +116,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://hfs-six.vercel.app",
     "https://*.vercel.app",
+     "https://hfs-backend-production.up.railway.app"
 ]
 # -------------------
 # DRF
