@@ -77,10 +77,10 @@ else:
 AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'ru-ru'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
+# Добавим FRONTEND_URL в CORS если задана
+frontend_url = os.getenv('FRONTEND_URL')
+if frontend_url and frontend_url not in CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS.append(frontend_url)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -99,16 +99,18 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-REST_FRAMEWORK = {
+# REST framework configuration (пустой по умолчанию, настройте при необходимости)
+REST_FRAMEWORK = {}
+
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Whitenoise для раздачи статики
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-}
 
-ALLOWED_HOSTS = ["*"]
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# ALLOWED_HOSTS остаётся из переменной окружения; при необходимости добавим FRONTEND_URL в CORS
+frontend_url = os.getenv('FRONTEND_URL')
+if frontend_url and frontend_url not in CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS.append(frontend_url)
