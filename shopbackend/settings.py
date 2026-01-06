@@ -10,12 +10,12 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,.railway.app",
-    https://hfs-backend-production.up.railway.app
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "hfs-backend-production.up.railway.app",
+]
 
-).split(",")
 
 # -------------------
 # Applications
