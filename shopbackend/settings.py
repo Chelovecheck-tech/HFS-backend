@@ -103,6 +103,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+# If the app is behind a proxy (Railway), ensure Django knows requests are https
+# so `request.build_absolute_uri()` and DRF absolute URLs use https.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
+
 # -------------------
 # CORS
 # -------------------
