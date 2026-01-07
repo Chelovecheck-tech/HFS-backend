@@ -21,6 +21,8 @@ ALLOWED_HOSTS = [
 # Applications
 # -------------------
 INSTALLED_APPS = [
+    "corsheaders",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -29,7 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    "corsheaders",
+    
 
     "products",
 ]
@@ -38,10 +40,12 @@ INSTALLED_APPS = [
 # Middleware
 # -------------------
 MIDDLEWARE = [
+     "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
-    "corsheaders.middleware.CorsMiddleware",
+   
 
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -103,9 +107,8 @@ if not DEBUG:
 # CORS
 # -------------------
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://hfs-pfw3q2gdn-chelovecheck-techs-pr.vercel.app",
+    "https://hfs-pfw3qgdn-chelovecheck-techs-pr.vercel.app",
+    "https://hfs-six.vercel.app",
 ]
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
@@ -115,9 +118,8 @@ if FRONTEND_URL:
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://hfs-six.vercel.app",
     "https://*.vercel.app",
-     "https://hfs-backend-production.up.railway.app"
+    "https://hfs-backend-production.up.railway.app",
 ]
 # -------------------
 # DRF
@@ -135,3 +137,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_PASSWORD_VALIDATORS = []
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
