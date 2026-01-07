@@ -105,7 +105,7 @@ if not DEBUG:
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://hfs-pfw3q2gdn-chelovecheck-techs-projects.vercel.app",
+    "https://hfs-pfw3q2gdn-chelovecheck-techs-pr.vercel.app",
 ]
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
