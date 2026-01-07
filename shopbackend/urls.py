@@ -9,8 +9,8 @@ urlpatterns = [
     path('api/', include('products.urls')),
 ]
 
-# Serve media files and use staticfiles finders for static files during development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    # Use staticfiles_urlpatterns so app/static and contrib static files (admin) are served
-    urlpatterns += staticfiles_urlpatterns()
+# Serve media files in production (Railway) and development
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Use staticfiles_urlpatterns for static files
+urlpatterns += staticfiles_urlpatterns()
