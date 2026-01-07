@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
 # -------------------
 INSTALLED_APPS = [
     "corsheaders",
+    "storages",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -107,6 +108,17 @@ if not DEBUG:
 # so `request.build_absolute_uri()` and DRF absolute URLs use https.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
+
+# Optional: use S3 for media storage when AWS env vars are provided
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+if AWS_STORAGE_BUCKET_NAME:
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME", None)
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN") or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_QUERYSTRING_AUTH = False
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
 # -------------------
 # CORS
