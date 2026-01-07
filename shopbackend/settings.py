@@ -112,8 +112,7 @@ USE_X_FORWARDED_HOST = True
 # CORS
 # -------------------
 CORS_ALLOWED_ORIGINS = [
-    "https://hfs-pfw3qgdn-chelovecheck-techs-pr.vercel.app",
-    "https://hfs-six.vercel.app",
+    "https://nbb-two.vercel.app",
 ]
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
