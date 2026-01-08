@@ -132,3 +132,15 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_PASSWORD_VALIDATORS = []
+
+
+
+# ======================
+# Cloudinary storage
+# ======================
+INSTALLED_APPS += [
+    "cloudinary",
+    "cloudinary_storage",
+]
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
