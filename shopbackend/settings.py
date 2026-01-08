@@ -20,6 +20,8 @@ ALLOWED_HOSTS = [
 # Applications
 # -------------------
 INSTALLED_APPS = [
+    "corsheaders",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -28,8 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    "corsheaders",
-
+    
     "cloudinary",
     "cloudinary_storage",
 
@@ -138,9 +139,6 @@ AUTH_PASSWORD_VALIDATORS = []
 # ======================
 # Cloudinary storage
 # ======================
-INSTALLED_APPS += [
-    "cloudinary",
-    "cloudinary_storage",
-]
+
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
