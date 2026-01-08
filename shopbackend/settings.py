@@ -4,8 +4,7 @@ import dj_database_url
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-load_dotenv(BASE_DIR / ".env")
+load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DEBUG", "False") == "True"
@@ -13,17 +12,14 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    ".railway.app",
     "hfs-backend-production.up.railway.app",
 ]
-
 
 # -------------------
 # Applications
 # -------------------
 INSTALLED_APPS = [
-    "corsheaders",
-    "storages",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -32,7 +28,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    
+    "corsheaders",
+
+    "cloudinary",
+    "cloudinary_storage",
 
     "products",
 ]
@@ -41,12 +40,10 @@ INSTALLED_APPS = [
 # Middleware
 # -------------------
 MIDDLEWARE = [
-     "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
-   
 
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -82,7 +79,7 @@ TEMPLATES = [
 ]
 
 # -------------------
-# Database (Railway compatible)
+# Database
 # -------------------
 DATABASES = {
     "default": dj_database_url.config(
@@ -93,43 +90,30 @@ DATABASES = {
 }
 
 # -------------------
-# Static / Media
+# Static
 # -------------------
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# -------------------
+# Cloudinary (MEDIA)
+# -------------------
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-if not DEBUG:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# If the app is behind a proxy (Railway), ensure Django knows requests are https
-# so `request.build_absolute_uri()` and DRF absolute URLs use https.
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-USE_X_FORWARDED_HOST = True
-
-# Optional: use S3 for media storage when AWS env vars are provided
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-if AWS_STORAGE_BUCKET_NAME:
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME", None)
-    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN") or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    AWS_QUERYSTRING_AUTH = False
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
 # -------------------
-# CORS
+# CORS / CSRF
 # -------------------
 CORS_ALLOWED_ORIGINS = [
     "https://nbb-two.vercel.app",
 ]
-
-FRONTEND_URL = os.getenv("FRONTEND_URL")
-if FRONTEND_URL:
-    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -137,22 +121,14 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.vercel.app",
     "https://hfs-backend-production.up.railway.app",
 ]
-# -------------------
-# DRF
-# -------------------
-REST_FRAMEWORK = {}
 
 # -------------------
 # Other
 # -------------------
 LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "UTC"
-
 USE_I18N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_PASSWORD_VALIDATORS = []
-
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOW_CREDENTIALS = True
