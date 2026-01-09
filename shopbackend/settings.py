@@ -44,13 +44,12 @@ INSTALLED_APPS = [
 # -------------------
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -118,12 +117,9 @@ MEDIA_URL = "/media/"
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://www.nbb.kg",
     "https://nbb.kg",
-    ]
-
-CORS_ALLOW_CREDENTIALS = False
-
+    "https://www.nbb.kg",
+]
 CSRF_TRUSTED_ORIGINS = [
     "https://hfs-backend-production.up.railway.app",
     "https://www.nbb.kg",
