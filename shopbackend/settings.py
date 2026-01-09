@@ -50,6 +50,7 @@ MIDDLEWARE = [
 
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -120,12 +121,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.nbb.kg",
     "https://nbb.kg",
     ]
-
-CORS_ORIGIN_WHITELIST = [
-    "https://www.nbb.kg",
-    "https://nbb.kg",
-]
-
 
 CORS_ALLOW_CREDENTIALS = False
 
