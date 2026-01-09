@@ -14,6 +14,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     ".railway.app",
     "hfs-backend-production.up.railway.app",
+    "nbb.kg",
+    "www.nbb.kg",
 ]
 
 # -------------------
