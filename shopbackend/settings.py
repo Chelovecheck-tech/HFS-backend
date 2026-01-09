@@ -114,13 +114,20 @@ MEDIA_URL = "/media/"
 # -------------------
 # CORS / CSRF
 # -------------------
+CORS_ALLOW_ALL_ORIGINS = False
+
 CORS_ALLOWED_ORIGINS = [
     "https://www.nbb.kg",
     "https://nbb.kg",
     ]
 
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = [
+    "https://www.nbb.kg",
+    "https://nbb.kg",
+]
+
+
+CORS_ALLOW_CREDENTIALS = False
 
 CSRF_TRUSTED_ORIGINS = [
     "https://hfs-backend-production.up.railway.app",
@@ -146,4 +153,4 @@ AUTH_PASSWORD_VALIDATORS = []
 # ======================
 
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
