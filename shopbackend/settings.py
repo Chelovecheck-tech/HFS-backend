@@ -114,12 +114,17 @@ MEDIA_URL = "/media/"
 # -------------------
 # CORS / CSRF
 # -------------------
+"""
+CORS-настройки для API:
+- Только разрешённые домены
+- Разрешить куки/авторизацию
+"""
 CORS_ALLOW_ALL_ORIGINS = False
-
 CORS_ALLOWED_ORIGINS = [
     "https://nbb.kg",
     "https://www.nbb.kg",
 ]
+CORS_ALLOW_CREDENTIALS = True  # если нужны куки/авторизация
 CSRF_TRUSTED_ORIGINS = [
     "https://hfs-backend-production.up.railway.app",
     "https://www.nbb.kg",
