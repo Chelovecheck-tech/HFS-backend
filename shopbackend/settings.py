@@ -113,15 +113,16 @@ MEDIA_URL = "/media/"
 # CORS / CSRF
 # -------------------
 CORS_ALLOWED_ORIGINS = [
-    "https://nbb-two.vercel.app",
-    "https://www.nbb.kg",]
+    "https://www.nbb.kg",
+    "https://nbb.kg",
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.vercel.app",
     "https://hfs-backend-production.up.railway.app",
     "https://www.nbb.kg",
+    "https://nbb.kg",
 ]
 
 # -------------------
