@@ -14,8 +14,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     ".railway.app",
     "hfs-backend-production.up.railway.app",
-    "nbb.kg",
     "www.nbb.kg",
+    "nbb.kg",
+    
 ]
 
 # -------------------
@@ -123,7 +124,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.nbb.kg",
     "https://nbb.kg",
     "https://api.nbb.kg",
-    "https://your-vercel-domain.vercel.app",  # временный домен Vercel, если нужен
+    
 ]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
