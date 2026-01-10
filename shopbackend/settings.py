@@ -115,16 +115,22 @@ MEDIA_URL = "/media/"
 # CORS / CSRF
 # -------------------
 """
-CORS-настройки для диагностики:
-- Временно разрешены все домены
+CORS-настройки для production:
+- Разрешены только ваши рабочие домены
 """
-CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGINS не используется при ALL_ORIGINS=True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://www.nbb.kg",
+    "https://nbb.kg",
+    "https://api.nbb.kg",
+    "https://your-vercel-domain.vercel.app",  # временный домен Vercel, если нужен
+]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://hfs-backend-production.up.railway.app",
     "https://www.nbb.kg",
     "https://nbb.kg",
+    "https://api.nbb.kg",
 ]
 
 # -------------------
