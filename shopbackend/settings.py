@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
     "hfs-backend-production.up.railway.app",
     "www.nbb.kg",
     "nbb.kg",
-    
+    "api.nbb.kg",
 ]
 
 # -------------------
@@ -124,6 +124,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.nbb.kg",
     "https://nbb.kg",
     "https://api.nbb.kg",
+    "https://yourproject.vercel.app",
     
 ]
 CORS_ALLOW_CREDENTIALS = True
