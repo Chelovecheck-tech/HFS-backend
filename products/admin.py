@@ -25,6 +25,7 @@ class SubcategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'brand', 'price', 'in_stock', 'category', 'subcategory', 'image_preview', 'created_at')
+    list_display_links = ('title',)
     search_fields = ('title', 'brand')
     list_filter = ('in_stock', 'category', 'subcategory')
     readonly_fields = ('image_preview',)
