@@ -12,11 +12,8 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".railway.app",
-    "hfs-backend-production.up.railway.app",
-    "www.nbb.kg",
-    "nbb.kg",
-    "api.nbb.kg",
+    # Добавь сюда свой боевой домен
+    # "your-backend-domain.com",
 ]
 
 # -------------------
@@ -33,9 +30,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    
-    "cloudinary",
+
     "cloudinary_storage",
+    "cloudinary",
 
     "products",
 ]
@@ -94,6 +91,8 @@ DATABASES = {
 }
 
 # -------------------
+
+# -------------------
 # Static
 # -------------------
 STATIC_URL = "/static/"
@@ -102,15 +101,13 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # -------------------
 # Cloudinary (MEDIA)
 # -------------------
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
-    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
-}
-
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
 MEDIA_URL = "/media/"
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME", "your_cloud_name"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY", "your_api_key"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET", "your_api_secret"),
+}
 
 # -------------------
 # CORS / CSRF
@@ -119,20 +116,17 @@ MEDIA_URL = "/media/"
 CORS-настройки для production:
 - Разрешены только ваши рабочие домены
 """
-CORS_ALLOW_ALL_ORIGINS = True
+
+# -------------------
+# CORS / CSRF
+# -------------------
+CORS_ALLOW_ALL_ORIGINS = True  # Для продакшна лучше False и явно указать домены ниже
 CORS_ALLOWED_ORIGINS = [
-    "https://www.nbb.kg",
-    "https://nbb.kg",
-    "https://api.nbb.kg",
-    "https://yourproject.vercel.app",
-    
+    # "https://your-frontend-domain.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://hfs-backend-production.up.railway.app",
-    "https://www.nbb.kg",
-    "https://nbb.kg",
-    "https://api.nbb.kg",
+    # "https://your-frontend-domain.com",
 ]
 
 # -------------------

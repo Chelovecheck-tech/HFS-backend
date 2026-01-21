@@ -12,7 +12,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         category = self.request.query_params.get('category')
         subcategory = self.request.query_params.get('subcategory')
         if category:
-            qs = qs.filter(category__slug=category)
+            qs = qs.filter(subcategory__category__slug=category)
         if subcategory:
             qs = qs.filter(subcategory__slug=subcategory)
         return qs

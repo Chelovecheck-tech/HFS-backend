@@ -8,9 +8,5 @@ router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'subcategories', SubcategoryViewSet, basename='subcategory')
 
 urlpatterns = [
-    # Router provides /products/, /categories/ and /subcategories/ endpoints
     path('', include(router.urls)),
 ]
-
-
-
