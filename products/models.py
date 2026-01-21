@@ -46,7 +46,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=120, blank=True, null=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # Image upload (stored in MEDIA_ROOT/products/)
-    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     in_stock = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
